@@ -1,0 +1,17 @@
+FROM python:3.12-slim
+
+RUN pip install \
+    dagster \
+    dagster-postgres \
+    dagster-docker \
+    dagster-duckdb
+
+# Add repository code
+COPY . /opt/dagster/app/datapipe-quickstart
+WORKDIR /opt/dagster/app/datapipe-quickstart
+
+# Run dagster gRPC server on port 4000
+
+EXPOSE 4000
+
+CMD ["dagster", "api", "grpc", "-h", "0.0.0.0", "-p", "4000", "-f", "datapipe_quickstart/definitions.py"]
