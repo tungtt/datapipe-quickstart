@@ -75,6 +75,26 @@ datapipe-quickstart/
     - `dagster-webserver`: For running Dagit, the Dagster UI.
     The `setup.py` also lists `dagster-cloud` and `pytest` (for development).
 
+### Alternative Setup: Using Docker Compose
+
+This method uses Docker Compose to set up and run the Dagster instance along with its dependencies (like PostgreSQL) in containers.
+
+1.  **Ensure Docker and Docker Compose are installed.**
+    Follow the official installation guides for [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/).
+2.  **Clone the repository or ensure you are in the project's root directory.**
+3.  **Copy the Docker Compose template file:**
+    In the `datapipe-quickstart` directory, copy the template to create your local Docker Compose configuration:
+    ```bash
+    cp docker-compose.yml.tmpl docker-compose.yml
+    ```
+    You can review [`docker-compose.yml`](datapipe-quickstart/docker-compose.yml:0) and make any modifications if needed.
+4.  **Build and run the services:**
+    ```bash
+    docker compose up --build -d
+    ```
+    This command will build the Docker images (if they don't exist) and start all the services defined in the `docker-compose.yml` file in detached mode (`-d`).
+5.  **Access Dagit UI:**
+    Once the services are up and running, the Dagit UI will be accessible at `http://localhost:3000`.
 ## Running the Pipeline
 
 1.  **Start Dagit (Dagster UI):**
